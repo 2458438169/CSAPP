@@ -227,3 +227,157 @@ int conditional(int x, int y, int z) {
 int isLessOrEqual(int x, int y) {
   return !(x ^ y) || ( !(!(x >> 31) & (y >> 31)) && (((x >> 31) & !(y >> 31)) || ((x + (~y + 1) >> 31) & 0b1)) );
 }
+
+//4
+/* 
+ * logicalNeg - implement the ! operator, using all of 
+ *              the legal operators except !
+ *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1
+ *   Legal ops: ~ & ^ | + << >>
+ *   Max ops: 12
+ *   Rating: 4 
+ */
+int logicalNeg(int x) {
+  return ((((~x + 1) >> 31) + 1) & 0b1) & (((x >> 31) +1) & 0b1);
+}
+
+/* howManyBits - return the minimum number of bits required to represent x in
+ *             two's complement
+ *  Examples: howManyBits(12) = 5
+ *            howManyBits(298) = 10
+ *            howManyBits(-5) = 4
+ *            howManyBits(0)  = 1
+ *            howManyBits(-1) = 1
+ *            howManyBits(0x80000000) = 32
+ *  Legal ops: ! ~ & ^ | + << >>
+ *  Max ops: 90
+ *  Rating: 4
+ */
+int howManyBits(int x) {
+  int iszero = !x;
+  int flag = x >> 31;
+
+  x = (flag & (~x)) |((~flag) & x );
+
+  int bit_16 = (!(!!(x >> 16) ^ 0x1)) << 4;
+  x >>= bit_16;
+  int bit_8 = (!(!!(x >> 8) ^ 0x1)) << 3;
+  x >>= bit_8;
+  int bit_4 = (!(!!(x >> 4) ^ 0x1)) << 2;
+  x >>= bit_4;
+  int bit_2 = (!(!!(x >> 2) ^ 0x1)) << 1;
+  x >>= bit_2;
+  int bit_1 = !(!!(x >> 1) ^ 0x1);
+  x >>= bit_1;
+  int bit_0 = x;
+  
+ int bit = bit_16 + bit_8 + bit_4 + bit_2 + bit_1 + bit_0 + 1;
+
+  return iszero | bit; 
+}
+
+//float
+/* 
+ * floatScale2 - Return bit-level equivalent of expression 2*f for
+ *   floating point argument f.
+ *   Both the argument and result are passed as unsigned int's, but
+ *   they are to be interpreted as the bit-level representation of
+ *   single-precision floating point values.
+ *   When argument is NaN, return argument
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 30
+ *   Rating: 4
+ */
+unsigned floatScale2(unsigned uf) {
+  unsigned sign = (uf >> 31) & 0x1;
+  unsigned exp = (uf >> 23) & 0xFF;
+  unsigned frac = uf & 0x7FFFFF;
+
+  //0
+  if(exp == 0 && frac == 0){
+    return uf;
+  }
+
+  //nan or inifity
+  if(exp == 0xFF){
+    return uf;
+  }
+
+  //denormalize
+  if(exp == 0){
+    frac <<= 1;
+    return (sign << 31) | frac;
+  }
+
+  //normalize
+  exp ++;
+  return (sign << 31) | (exp << 23) | frac;
+} 
+
+/* 
+ * floatFloat2Int - Return bit-level equivalent of expression (int) f
+ *   for floating point argument f.
+ *   Argument is passed as unsigned int, but
+ *   it is to be interpreted as the bit-level representation of a
+ *   single-precision floating point value.
+ *   Anything out of range (including NaN and infinity) should return
+ *   0x80000000u.
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 30
+ *   Rating: 4
+ */
+int floatFloat2Int(unsigned uf) {
+  unsigned sign = (uf >> 31) & 0x1;
+  unsigned exp = (uf >> 23) & 0xFF;
+  unsigned frac = uf & 0x7FFFFF;
+
+  //0
+  if (exp == 0 && frac == 0) return 0;
+
+  //nan or inifity
+  if(exp == 0xFF)return 1<<31;
+
+  //denormalize
+  if(exp == 0)return 0;
+
+  //normalize
+  int E = exp -127;
+  frac = frac | (1<<23);
+
+  if(E > 32)//overflow
+  return 1<<31;
+  else if (E <0)return 0;
+
+  if(E >= 23) frac <<= (E-23);
+  else frac >>= (23 -E);
+
+  if(sign)return (~frac +1);
+  else return frac;
+}
+
+/* 
+ * floatPower2 - Return bit-level equivalent of the expression 2.0^x
+ *   (2.0 raised to the power x) for any 32-bit integer x.
+ *
+ *   The unsigned value that is returned should have the identical bit
+ *   representation as the single-precision floating-point number 2.0^x.
+ *   If the result is too small to be represented as a denorm, return
+ *   0. If too large, return +INF.
+ * 
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. Also if, while 
+ *   Max ops: 30 
+ *   Rating: 4
+ */
+unsigned floatPower2(int x) {
+  if(x < -149)//too small
+    return 0;
+  else if(x < - 126){//denormalize
+    int shift = 23 + (x + 126);
+    return 1 << shift;
+  }
+  else if(x <= 127){//normalize
+    int exp = x + 127;
+    return exp << 23;
+  }else//inifity
+  return 0xFF << 23;
+}
