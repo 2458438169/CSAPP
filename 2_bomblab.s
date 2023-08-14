@@ -1,15 +1,12 @@
 Dump of assembler code for function phase_1:
-   0x0000000000400ee0 <+0>:     sub    $0x8,%rsp    //开辟栈空间
-   0x0000000000400ee4 <+4>:     mov    $0x402400,%esi    //将0x402400地址的值移动到%esi中
-   0x0000000000400ee9 <+9>:     callq  0x401338 <strings_not_equal>  //调用一个名为strings_not_equal的函数，接受%esi与%rdi寄存器中的值进行比较，相同返回0，不相同返回1到%eax中
-   0x0000000000400eee <+14>:    test   %eax,%eax  //测试eax是否为0，是返回0
-   0x0000000000400ef0 <+16>:    je     0x400ef7 <phase_1+23>  //为零则跳转
-   0x0000000000400ef2 <+18>:    callq  0x40143a <explode_bomb>  //否则爆炸
-   0x0000000000400ef7 <+23>:    add    $0x8,%rsp  //释放栈空间
+   0x0000000000400ee0 <+0>:     sub    $0x8,%rsp   ;开辟栈空间
+   0x0000000000400ee4 <+4>:     mov    $0x402400,%esi   ;将0x402400地址的值移动到%esi中
+   0x0000000000400ee9 <+9>:     callq  0x401338 <strings_not_equal>  ;调用一个名为strings_not_equal的函数，接受%esi与%rdi寄存器中的值进行比较，相同返回0，不相同返回1到%eax中
+   0x0000000000400eee <+14>:    test   %eax,%eax  ;测试eax是否为0，是返回0
+   0x0000000000400ef0 <+16>:    je     0x400ef7 <phase_1+23>  ;为零则跳转
+   0x0000000000400ef2 <+18>:    callq  0x40143a <explode_bomb>  ;否则爆炸
+   0x0000000000400ef7 <+23>:    add    $0x8,%rsp  ;释放栈空间
    0x0000000000400efb <+27>:    retq   
-
-  ans:($0x402400)Border relations with Canada have never been better.
-  
 
 Dump of assembler code for function phase_2:
    0x0000000000400efc <+0>:     push   %rbp
