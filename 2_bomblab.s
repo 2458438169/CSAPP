@@ -36,16 +36,16 @@ Dump of assembler code for function phase_2:
    0x0000000000400f42 <+70>:    retq   
 
 Dump of assembler code for function phase_3:
-   0x0000000000400f43 <+0>:     sub    $0x18,%rsp
-   0x0000000000400f47 <+4>:     lea    0xc(%rsp),%rcx
-   0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx
-   0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi
-   0x0000000000400f56 <+19>:    mov    $0x0,%eax
-   0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>
-   0x0000000000400f60 <+29>:    cmp    $0x1,%eax
-   0x0000000000400f63 <+32>:    jg     0x400f6a <phase_3+39>
-   0x0000000000400f65 <+34>:    callq  0x40143a <explode_bomb>
-   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)
+   0x0000000000400f43 <+0>:     sub    $0x18,%rsp   ;开辟栈空间
+   0x0000000000400f47 <+4>:     lea    0xc(%rsp),%rcx   ;%rsp地址+0xc存入%rcx
+   0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx   ;%rsp地址+0x8存入%rcx
+   0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi   ;将$0x4025cf存入%esi
+   0x0000000000400f56 <+19>:    mov    $0x0,%eax   ;将0x0存入%eax
+   0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>   ;调用函数将输入的两个整数存入%rcx和%rdx
+   0x0000000000400f60 <+29>:    cmp    $0x1,%eax   ;比较0x1和%eax的值
+   0x0000000000400f63 <+32>:    jg     0x400f6a <phase_3+39>   ;如果大于则跳转至39
+   0x0000000000400f65 <+34>:    callq  0x40143a <explode_bomb>   ;否则爆炸
+   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)   ;
    0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>
    0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax
    0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)
