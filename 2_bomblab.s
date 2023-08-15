@@ -45,11 +45,11 @@ Dump of assembler code for function phase_3:
    0x0000000000400f60 <+29>:    cmp    $0x1,%eax   ;比较0x1和%eax的值
    0x0000000000400f63 <+32>:    jg     0x400f6a <phase_3+39>   ;如果大于则跳转至39
    0x0000000000400f65 <+34>:    callq  0x40143a <explode_bomb>   ;否则爆炸
-   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)   ;
-   0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>
-   0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax
-   0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)
-   0x0000000000400f7c <+57>:    mov    $0xcf,%eax
+   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)   ;比较0x7和%rsp地址+0x8处的值
+   0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>   ;大于则跳转至106，爆炸
+   0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax   ;否则将%rsp+0x8处的值存入%eax
+   0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)   ;跳转到%rax乘以8加上0x402470指向的地址处
+   0x0000000000400f7c <+57>:    mov    $0xcf,%eax   ;
    0x0000000000400f81 <+62>:    jmp    0x400fbe <phase_3+123>
    0x0000000000400f83 <+64>:    mov    $0x2c3,%eax
    0x0000000000400f88 <+69>:    jmp    0x400fbe <phase_3+123>
@@ -63,7 +63,7 @@ Dump of assembler code for function phase_3:
    0x0000000000400fa4 <+97>:    jmp    0x400fbe <phase_3+123>
    0x0000000000400fa6 <+99>:    mov    $0x147,%eax
    0x0000000000400fab <+104>:   jmp    0x400fbe <phase_3+123>
-   0x0000000000400fad <+106>:   callq  0x40143a <explode_bomb>
+   0x0000000000400fad <+106>:   callq  0x40143a <explode_bomb>   ;爆炸
    0x0000000000400fb2 <+111>:   mov    $0x0,%eax
    0x0000000000400fb7 <+116>:   jmp    0x400fbe <phase_3+123>
    0x0000000000400fb9 <+118>:   mov    $0x137,%eax
