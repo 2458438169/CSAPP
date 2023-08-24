@@ -38,8 +38,8 @@ Dump of assembler code for function phase_2:
 Dump of assembler code for function phase_3:
    0x0000000000400f43 <+0>:     sub    $0x18,%rsp   ;开辟栈空间
    0x0000000000400f47 <+4>:     lea    0xc(%rsp),%rcx   ;%rsp地址+0xc存入%rcx
-   0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx   ;%rsp地址+0x8存入%rcx
-   0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi   ;将$0x4025cf存入%esi
+   0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx   ;%rsp地址+0x8存入%rdx
+   0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi   ;将0x4025cf存入%esi
    0x0000000000400f56 <+19>:    mov    $0x0,%eax   ;将0x0存入%eax
    0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>   ;调用函数将输入的两个整数存入%rcx和%rdx
    0x0000000000400f60 <+29>:    cmp    $0x1,%eax   ;比较0x1和%eax的值
@@ -49,27 +49,52 @@ Dump of assembler code for function phase_3:
    0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>   ;大于则跳转至106，爆炸
    0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax   ;否则将%rsp+0x8处的值存入%eax
    0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)   ;跳转到%rax乘以8加上0x402470指向的地址处
-   0x0000000000400f7c <+57>:    mov    $0xcf,%eax   ;
-   0x0000000000400f81 <+62>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400f83 <+64>:    mov    $0x2c3,%eax
-   0x0000000000400f88 <+69>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400f8a <+71>:    mov    $0x100,%eax
-   0x0000000000400f8f <+76>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400f91 <+78>:    mov    $0x185,%eax
-   0x0000000000400f96 <+83>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400f98 <+85>:    mov    $0xce,%eax
-   0x0000000000400f9d <+90>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400f9f <+92>:    mov    $0x2aa,%eax
-   0x0000000000400fa4 <+97>:    jmp    0x400fbe <phase_3+123>
-   0x0000000000400fa6 <+99>:    mov    $0x147,%eax
-   0x0000000000400fab <+104>:   jmp    0x400fbe <phase_3+123>
+   0x0000000000400f7c <+57>:    mov    $0xcf,%eax   ;将0xcf存入%eax
+   0x0000000000400f81 <+62>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400f83 <+64>:    mov    $0x2c3,%eax   ;将0x2c3存入%eax
+   0x0000000000400f88 <+69>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400f8a <+71>:    mov    $0x100,%eax   ;将0x100存入%eax
+   0x0000000000400f8f <+76>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400f91 <+78>:    mov    $0x185,%eax   ;将0x185存入%eax
+   0x0000000000400f96 <+83>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400f98 <+85>:    mov    $0xce,%eax   ;将0xce存入%eax
+   0x0000000000400f9d <+90>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400f9f <+92>:    mov    $0x2aa,%eax   ;将0x2aa存入%eax
+   0x0000000000400fa4 <+97>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400fa6 <+99>:    mov    $0x147,%eax   ;将0x147存入%eax
+   0x0000000000400fab <+104>:   jmp    0x400fbe <phase_3+123>   ;跳转至123处
    0x0000000000400fad <+106>:   callq  0x40143a <explode_bomb>   ;爆炸
-   0x0000000000400fb2 <+111>:   mov    $0x0,%eax
-   0x0000000000400fb7 <+116>:   jmp    0x400fbe <phase_3+123>
-   0x0000000000400fb9 <+118>:   mov    $0x137,%eax
-   0x0000000000400fbe <+123>:   cmp    0xc(%rsp),%eax
-   0x0000000000400fc2 <+127>:   je     0x400fc9 <phase_3+134>
-   0x0000000000400fc4 <+129>:   callq  0x40143a <explode_bomb>
-   0x0000000000400fc9 <+134>:   add    $0x18,%rsp
+   0x0000000000400fb2 <+111>:   mov    $0x0,%eax   ;将0x0存入%eax
+   0x0000000000400fb7 <+116>:   jmp    0x400fbe <phase_3+123>   ;跳转至123处
+   0x0000000000400fb9 <+118>:   mov    $0x137,%eax   ;将0x137存入%eax
+   0x0000000000400fbe <+123>:   cmp    0xc(%rsp),%eax   ;对比%rsp地址加上0xc的值与%eax的值
+   0x0000000000400fc2 <+127>:   je     0x400fc9 <phase_3+134>   ;相同则跳转至134
+   0x0000000000400fc4 <+129>:   callq  0x40143a <explode_bomb>   ;不同则爆炸
+   0x0000000000400fc9 <+134>:   add    $0x18,%rsp   ;释放栈空间
    0x0000000000400fcd <+138>:   retq   
+End of assembler dump.
+
+Dump of assembler code for function phase_4:
+   0x000000000040100c <+0>:     sub    $0x18,%rsp
+   0x0000000000401010 <+4>:     lea    0xc(%rsp),%rcx
+   0x0000000000401015 <+9>:     lea    0x8(%rsp),%rdx
+   0x000000000040101a <+14>:    mov    $0x4025cf,%esi
+   0x000000000040101f <+19>:    mov    $0x0,%eax
+   0x0000000000401024 <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>
+   0x0000000000401029 <+29>:    cmp    $0x2,%eax
+   0x000000000040102c <+32>:    jne    0x401035 <phase_4+41>
+   0x000000000040102e <+34>:    cmpl   $0xe,0x8(%rsp)
+   0x0000000000401033 <+39>:    jbe    0x40103a <phase_4+46>
+   0x0000000000401035 <+41>:    callq  0x40143a <explode_bomb>
+   0x000000000040103a <+46>:    mov    $0xe,%edx
+   0x000000000040103f <+51>:    mov    $0x0,%esi
+   0x0000000000401044 <+56>:    mov    0x8(%rsp),%edi
+   0x0000000000401048 <+60>:    callq  0x400fce <func4>
+   0x000000000040104d <+65>:    test   %eax,%eax
+   0x000000000040104f <+67>:    jne    0x401058 <phase_4+76>
+   0x0000000000401051 <+69>:    cmpl   $0x0,0xc(%rsp)
+   0x0000000000401056 <+74>:    je     0x40105d <phase_4+81>
+   0x0000000000401058 <+76>:    callq  0x40143a <explode_bomb>
+   0x000000000040105d <+81>:    add    $0x18,%rsp
+   0x0000000000401061 <+85>:    retq   
 End of assembler dump.
