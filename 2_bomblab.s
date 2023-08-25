@@ -41,13 +41,13 @@ Dump of assembler code for function phase_3:
    0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx   ;%rsp地址+0x8存入%rdx
    0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi   ;将0x4025cf存入%esi
    0x0000000000400f56 <+19>:    mov    $0x0,%eax   ;将0x0存入%eax
-   0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>   ;调用函数将输入的两个整数存入%rcx和%rdx
+   0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>   ;调用函数将输入的两个整数存入%rdx和%rcx
    0x0000000000400f60 <+29>:    cmp    $0x1,%eax   ;比较0x1和%eax的值
    0x0000000000400f63 <+32>:    jg     0x400f6a <phase_3+39>   ;如果大于则跳转至39
    0x0000000000400f65 <+34>:    callq  0x40143a <explode_bomb>   ;否则爆炸
-   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)   ;比较0x7和%rsp地址+0x8处的值
+   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)   ;比较0x7和%rsp地址+0x8处的值(%rdx)   %rdx应小于0x7
    0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>   ;大于则跳转至106，爆炸
-   0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax   ;否则将%rsp+0x8处的值存入%eax
+   0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax   ;否则将%rsp+0x8处的值(%rdx)存入%eax
    0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)   ;跳转到%rax乘以8加上0x402470指向的地址处
    0x0000000000400f7c <+57>:    mov    $0xcf,%eax   ;将0xcf存入%eax
    0x0000000000400f81 <+62>:    jmp    0x400fbe <phase_3+123>   ;跳转至123处
@@ -67,7 +67,7 @@ Dump of assembler code for function phase_3:
    0x0000000000400fb2 <+111>:   mov    $0x0,%eax   ;将0x0存入%eax
    0x0000000000400fb7 <+116>:   jmp    0x400fbe <phase_3+123>   ;跳转至123处
    0x0000000000400fb9 <+118>:   mov    $0x137,%eax   ;将0x137存入%eax
-   0x0000000000400fbe <+123>:   cmp    0xc(%rsp),%eax   ;对比%rsp地址加上0xc的值与%eax的值
+   0x0000000000400fbe <+123>:   cmp    0xc(%rsp),%eax   ;对比%rsp地址加上0xc的值(%rcx)与%eax的值
    0x0000000000400fc2 <+127>:   je     0x400fc9 <phase_3+134>   ;相同则跳转至134
    0x0000000000400fc4 <+129>:   callq  0x40143a <explode_bomb>   ;不同则爆炸
    0x0000000000400fc9 <+134>:   add    $0x18,%rsp   ;释放栈空间
