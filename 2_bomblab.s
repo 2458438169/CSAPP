@@ -144,7 +144,8 @@ Dump of assembler code for function phase_5:
    0x000000000040108f <+45>:    mov    %cl,(%rsp)   ;%cl(%ecx的低八位)的值存入%rsp所指地址
    0x0000000000401092 <+48>:    mov    (%rsp),%rdx   ;将%rsp所指地址处的值存入%rdx
    0x0000000000401096 <+52>:    and    $0xf,%edx   ;取%edx的低四位
-   0x0000000000401099 <+55>:    movzbl 0x4024b0(%rdx),%edx   ;%rdx地址+0x4024b0存入%edx
+   0x0000000000401099 <+55>:    movzbl 0x4024b0(%rdx),%edx   ;%rdx地址+0x4024b0存入%edx   0x4024b0：“maduiersnfotvbylSo you think you can stop th
+e bomb with ctrl-c, do you?”
    0x00000000004010a0 <+62>:    mov    %dl,0x10(%rsp,%rax,1)   ;将%dl存入%rsp+%rax+0x10处
    0x00000000004010a4 <+66>:    add    $0x1,%rax   ;%rax+0x1
    0x00000000004010a8 <+70>:    cmp    $0x6,%rax   ;比较0x6和%rax
@@ -152,10 +153,10 @@ Dump of assembler code for function phase_5:
    0x00000000004010ae <+76>:    movb   $0x0,0x16(%rsp)   ;相同则将0x0存入%rsp+0x16
    0x00000000004010b3 <+81>:    mov    $0x40245e,%esi   ;将0x40245e存入%esi
    0x00000000004010b8 <+86>:    lea    0x10(%rsp),%rdi   ;将%rsp+0x10的地址存入%rdi
-   0x00000000004010bd <+91>:    callq  0x401338 <strings_not_equal>   ;调用函数比较两个数
-   0x00000000004010c2 <+96>:    test   %eax,%eax   ;测试是否为
-   0x00000000004010c4 <+98>:    je     0x4010d9 <phase_5+119>
-   0x00000000004010c6 <+100>:   callq  0x40143a <explode_bomb>   ;爆炸
+   0x00000000004010bd <+91>:    callq  0x401338 <strings_not_equal>   ;调用函数比较两个数，将结果存入%eax
+   0x00000000004010c2 <+96>:    test   %eax,%eax   ;测试是否为0
+   0x00000000004010c4 <+98>:    je     0x4010d9 <phase_5+119>   ;为0则跳转至119
+   0x00000000004010c6 <+100>:   callq  0x40143a <explode_bomb>   ;否则爆炸
    0x00000000004010cb <+105>:   nopl   0x0(%rax,%rax,1)
    0x00000000004010d0 <+110>:   jmp    0x4010d9 <phase_5+119>
    0x00000000004010d2 <+112>:   mov    $0x0,%eax   ;0x0存入%eax
