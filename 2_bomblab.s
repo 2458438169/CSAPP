@@ -144,15 +144,14 @@ Dump of assembler code for function phase_5:
    0x000000000040108f <+45>:    mov    %cl,(%rsp)   ;%cl(%ecx的低八位)的值存入%rsp所指地址
    0x0000000000401092 <+48>:    mov    (%rsp),%rdx   ;将%rsp所指地址处的值存入%rdx
    0x0000000000401096 <+52>:    and    $0xf,%edx   ;取%edx的低四位
-   0x0000000000401099 <+55>:    movzbl 0x4024b0(%rdx),%edx   ;%rdx地址+0x4024b0存入%edx   0x4024b0：“maduiersnfotvbylSo you think you can stop th
-e bomb with ctrl-c, do you?”
-   0x00000000004010a0 <+62>:    mov    %dl,0x10(%rsp,%rax,1)   ;将%dl存入%rsp+%rax+0x10处
+   0x0000000000401099 <+55>:    movzbl 0x4024b0(%rdx),%edx   ;%rdx地址+0x4024b0存入%edx   0x4024b0：“maduiersnfotvbyl”
+   0x00000000004010a0 <+62>:    mov    %dl,0x10(%rsp,%rax,1)   ;将%dl存入%rsp+%rax+0x1处
    0x00000000004010a4 <+66>:    add    $0x1,%rax   ;%rax+0x1
-   0x00000000004010a8 <+70>:    cmp    $0x6,%rax   ;比较0x6和%rax
+   0x00000000004010a8 <+70>:    cmp    $0x6,%rax   ;比较0x6和%rax   循环六次
    0x00000000004010ac <+74>:    jne    0x40108b <phase_5+41>   ;不同则跳转至41
-   0x00000000004010ae <+76>:    movb   $0x0,0x16(%rsp)   ;相同则将0x0存入%rsp+0x16
-   0x00000000004010b3 <+81>:    mov    $0x40245e,%esi   ;将0x40245e存入%esi
-   0x00000000004010b8 <+86>:    lea    0x10(%rsp),%rdi   ;将%rsp+0x10的地址存入%rdi
+   0x00000000004010ae <+76>:    movb   $0x0,0x16(%rsp)   ;相同则将0x0存入%rsp+0x16   跳出循环
+   0x00000000004010b3 <+81>:    mov    $0x40245e,%esi   ;将0x40245e存入%esi   0x40245e:"flyers"
+   0x00000000004010b8 <+86>:    lea    0x10(%rsp),%rdi   ;将%rsp+0x10的地址存入%rdi(循环内存入字符的地址)
    0x00000000004010bd <+91>:    callq  0x401338 <strings_not_equal>   ;调用函数比较两个数，将结果存入%eax
    0x00000000004010c2 <+96>:    test   %eax,%eax   ;测试是否为0
    0x00000000004010c4 <+98>:    je     0x4010d9 <phase_5+119>   ;为0则跳转至119
@@ -161,12 +160,12 @@ e bomb with ctrl-c, do you?”
    0x00000000004010d0 <+110>:   jmp    0x4010d9 <phase_5+119>
    0x00000000004010d2 <+112>:   mov    $0x0,%eax   ;0x0存入%eax
    0x00000000004010d7 <+117>:   jmp    0x40108b <phase_5+41>   ;跳转至41
-   0x00000000004010d9 <+119>:   mov    0x18(%rsp),%rax
-   0x00000000004010de <+124>:   xor    %fs:0x28,%rax
-   0x00000000004010e7 <+133>:   je     0x4010ee <phase_5+140>
-   0x00000000004010e9 <+135>:   callq  0x400b30 <__stack_chk_fail@plt>
-   0x00000000004010ee <+140>:   add    $0x20,%rsp
-   0x00000000004010f2 <+144>:   pop    %rbx
+   0x00000000004010d9 <+119>:   mov    0x18(%rsp),%rax   ;%rsp+0x18处的值存入%rax
+   0x00000000004010de <+124>:   xor    %fs:0x28,%rax   ;将%fs中偏移量为0x28的值与%rax异或操作
+   0x00000000004010e7 <+133>:   je     0x4010ee <phase_5+140>   ;如果%rax为0则跳转到140
+   0x00000000004010e9 <+135>:   callq  0x400b30 <__stack_chk_fail@plt>   ；否则栈溢出，报错
+   0x00000000004010ee <+140>:   add    $0x20,%rsp   ;释放栈空间
+   0x00000000004010f2 <+144>:   pop    %rbx   ;恢复%rbx的值
    0x00000000004010f3 <+145>:   retq   
 End of assembler dump.
 
