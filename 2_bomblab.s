@@ -250,7 +250,7 @@ Dump of assembler code for function phase_6:
    0x00000000004011ee <+250>:   mov    0x8(%rbx),%rbx   ;%rbx=%rbx+0x8
    0x00000000004011f2 <+254>:   sub    $0x1,%ebp   ;%ebp-=0x1
    0x00000000004011f5 <+257>:   jne    0x4011df <phase_6+235>   ;不同跳转至235
-   0x00000000004011f7 <+259>:   add    $0x50,%rsp   ;%rsp+=0x50
+   0x00000000004011f7 <+259>:   add    $0x50,%rsp   ;释放栈空间
    0x00000000004011fb <+263>:   pop    %rbx   
    0x00000000004011fc <+264>:   pop    %rbp
    0x00000000004011fd <+265>:   pop    %r12
