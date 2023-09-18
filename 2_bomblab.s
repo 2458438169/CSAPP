@@ -219,7 +219,7 @@ Dump of assembler code for function phase_6:
       
    0x000000000040116f <+123>:   mov    $0x0,%esi   ;%esi=0x0
    0x0000000000401174 <+128>:   jmp    0x401197 <phase_6+163>   ;跳转至163
-      
+      ;六个数倒置放到rsp+0x20之后
       0x0000000000401176 <+130>:   mov    0x8(%rdx),%rdx   ;%rdx=%rdx+0x8
       0x000000000040117a <+134>:   add    $0x1,%eax   ;%eax+=0x1
       0x000000000040117d <+137>:   cmp    %ecx,%eax   ;%eax与%ecx比较
@@ -245,7 +245,7 @@ Dump of assembler code for function phase_6:
    0x00000000004011b0 <+188>:   lea    0x28(%rsp),%rax   ;%rax=%rsp+0x28
    0x00000000004011b5 <+193>:   lea    0x50(%rsp),%rsi   ;%rsi=%rsp+0x50
    0x00000000004011ba <+198>:   mov    %rbx,%rcx   ;%rcx=%rbx
-      ;将6个数转移位置
+      ;将六个节点重连为链表
       0x00000000004011bd <+201>:   mov    (%rax),%rdx   ;%rdx=%rax
       0x00000000004011c0 <+204>:   mov    %rdx,0x8(%rcx)   ;%rcx+0x8=%rdx
       0x00000000004011c4 <+208>:   add    $0x8,%rax   ;%rax+=0x8
