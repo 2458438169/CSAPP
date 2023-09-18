@@ -209,7 +209,7 @@ Dump of assembler code for function phase_6:
    0x0000000000401153 <+95>:    lea    0x18(%rsp),%rsi   ;%rsi=%rsp+0x18
    0x0000000000401158 <+100>:   mov    %r14,%rax   ;%rax=%r14
    0x000000000040115b <+103>:   mov    $0x7,%ecx   ;%ecx=0x7
-   
+      ;num[i]=7-num[i]
       0x0000000000401160 <+108>:   mov    %ecx,%edx   ;%edx=%ecx
       0x0000000000401162 <+110>:   sub    (%rax),%edx   ;%edx-=(%rax)
       0x0000000000401164 <+112>:   mov    %edx,(%rax)   ;(%rax)=%edx
@@ -219,12 +219,14 @@ Dump of assembler code for function phase_6:
       
    0x000000000040116f <+123>:   mov    $0x0,%esi   ;%esi=0x0
    0x0000000000401174 <+128>:   jmp    0x401197 <phase_6+163>   ;跳转至163
-   
+      
       0x0000000000401176 <+130>:   mov    0x8(%rdx),%rdx   ;%rdx=%rdx+0x8
       0x000000000040117a <+134>:   add    $0x1,%eax   ;%eax+=0x1
       0x000000000040117d <+137>:   cmp    %ecx,%eax   ;%eax与%ecx比较
       0x000000000040117f <+139>:   jne    0x401176 <phase_6+130>   ;不同则跳转至130
+      
       0x0000000000401181 <+141>:   jmp    0x401188 <phase_6+148>   ;跳转至148
+      
       0x0000000000401183 <+143>:   mov    $0x6032d0,%edx   ;%edx=0x6032d0
       0x0000000000401188 <+148>:   mov    %rdx,0x20(%rsp,%rsi,2)   ;%rsp+%rsi*2+0x20=%rdx
       0x000000000040118d <+153>:   add    $0x4,%rsi   ;%rsi+=0x4
@@ -234,21 +236,24 @@ Dump of assembler code for function phase_6:
       0x0000000000401197 <+163>:   mov    (%rsp,%rsi,1),%ecx   ;%ecx=%rsp+%rsi*1
       0x000000000040119a <+166>:   cmp    $0x1,%ecx   ;0x1比较%ecx
       0x000000000040119d <+169>:   jle    0x401183 <phase_6+143>   ;小于或等于跳转至143
+      
       0x000000000040119f <+171>:   mov    $0x1,%eax   ;%eax=0x1
       0x00000000004011a4 <+176>:   mov    $0x6032d0,%edx   ;%edx=0x6032d0
       0x00000000004011a9 <+181>:   jmp    0x401176 <phase_6+130>   ;跳转至130
+      
    0x00000000004011ab <+183>:   mov    0x20(%rsp),%rbx   ;%rbx=%rsp+0x20
-   
    0x00000000004011b0 <+188>:   lea    0x28(%rsp),%rax   ;%rax=%rsp+0x28
    0x00000000004011b5 <+193>:   lea    0x50(%rsp),%rsi   ;%rsi=%rsp+0x50
    0x00000000004011ba <+198>:   mov    %rbx,%rcx   ;%rcx=%rbx
-   0x00000000004011bd <+201>:   mov    (%rax),%rdx   ;%rdx=%rax
-   0x00000000004011c0 <+204>:   mov    %rdx,0x8(%rcx)   ;%rcx+0x8=%rdx
-   0x00000000004011c4 <+208>:   add    $0x8,%rax   ;%rax+=0x8
-   0x00000000004011c8 <+212>:   cmp    %rsi,%rax   ;%rsi比较%rax
-   0x00000000004011cb <+215>:   je     0x4011d2 <phase_6+222>   ;相同跳转至222
-   0x00000000004011cd <+217>:   mov    %rdx,%rcx   ;%rcx=%rdx
-   0x00000000004011d0 <+220>:   jmp    0x4011bd <phase_6+201>   ;跳转至201
+      ;将6个数转移位置
+      0x00000000004011bd <+201>:   mov    (%rax),%rdx   ;%rdx=%rax
+      0x00000000004011c0 <+204>:   mov    %rdx,0x8(%rcx)   ;%rcx+0x8=%rdx
+      0x00000000004011c4 <+208>:   add    $0x8,%rax   ;%rax+=0x8
+      0x00000000004011c8 <+212>:   cmp    %rsi,%rax   ;%rsi比较%rax
+      0x00000000004011cb <+215>:   je     0x4011d2 <phase_6+222>   ;相同跳转至222
+      0x00000000004011cd <+217>:   mov    %rdx,%rcx   ;%rcx=%rdx
+      0x00000000004011d0 <+220>:   jmp    0x4011bd <phase_6+201>   ;跳转至201
+      
    0x00000000004011d2 <+222>:   movq   $0x0,0x8(%rdx)   ；%rdx+0x8=0x0
    0x00000000004011da <+230>:   mov    $0x5,%ebp   ;%ebq=0x5
    0x00000000004011df <+235>:   mov    0x8(%rbx),%rax   ;%rax=%rbx+0x8
