@@ -253,7 +253,8 @@ Dump of assembler code for function phase_6:
       0x00000000004011cb <+215>:   je     0x4011d2 <phase_6+222>   ;相同跳转至222
       0x00000000004011cd <+217>:   mov    %rdx,%rcx   ;%rcx=%rdx
       0x00000000004011d0 <+220>:   jmp    0x4011bd <phase_6+201>   ;跳转至201
-      
+
+   ;比较链表，顺序应为从大到小
    0x00000000004011d2 <+222>:   movq   $0x0,0x8(%rdx)   ；%rdx+0x8=0x0
    0x00000000004011da <+230>:   mov    $0x5,%ebp   ;%ebq=0x5
    0x00000000004011df <+235>:   mov    0x8(%rbx),%rax   ;%rax=%rbx+0x8
